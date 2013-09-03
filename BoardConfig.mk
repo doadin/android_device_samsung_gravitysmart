@@ -10,6 +10,7 @@ TARGET_BOARD_PLATFORM := msm7k
 TARGET_CPU_ABI := armeabi
 TARGET_CPU_ABI := armeabi-v6j
 TARGET_CPU_ABI2 := armeabi
+TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv6j
 TARGET_BOOTLOADER_BOARD_NAME := gravitysmart
 
