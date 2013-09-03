@@ -17,8 +17,8 @@ TARGET_BOOTLOADER_BOARD_NAME := gravitysmart
 #HAVE_HTC_AUDIO_DRIVER := true
 BOARD_USES_GENERIC_AUDIO := true
 
-BOARD_KERNEL_CMDLINE := no_console_suspend=1 console=null
-BOARD_KERNEL_BASE := 0x10000000
+BOARD_KERNEL_CMDLINE := 
+BOARD_KERNEL_BASE := 0x13600000
 BOARD_PAGE_SIZE := 0x00000800
 
 # fix this up by examining /proc/mtd on a running device
