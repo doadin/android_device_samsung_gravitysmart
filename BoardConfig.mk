@@ -23,10 +23,10 @@ BOARD_KERNEL_PAGESIZE := 4096
 #BOARD_PAGE_SIZE := 0x00000800 #58588/14647
 
 # fix this up by examining /proc/mtd on a running device
-BOARD_BOOTIMAGE_PARTITION_SIZE := 10240  #0x00300000(orig)  #Blocksize=10240(from device)
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 10240  #00500000(orig)  #Blocksize=10240(from device)
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 226304  #0x08ac0000(orig)  #Blocksize=226304(from device)
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 161792  #0x0df80000(orig)  #Blocksize=161792(from device)
+BOARD_BOOTIMAGE_PARTITION_SIZE := 10240 #In Hex=0x2800  #Blocksize=10240(from device)
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 10240 #In Hex=0x2800  #Blocksize=10240(from device)
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 226304 #In Hex=0x37400  #Blocksize=226304(from device)
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 161792 #In Hex=0x27800  #Blocksize=161792(from device)
 #BOARD_FLASH_BLOCK_SIZE := 131072 #how to check?
 
 #/dev/stl14 /cache #Blocksize=21760
