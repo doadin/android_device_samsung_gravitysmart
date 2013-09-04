@@ -11,7 +11,7 @@ TARGET_CPU_ABI := armeabi
 
 #HAVE_HTC_AUDIO_DRIVER := true 
 BOARD_USES_GENERIC_AUDIO := true 
-#
+#end comment
 
 TARGET_BOARD_PLATFORM := msm7k
 #TARGET_CPU_ABI := armeabi-v6j
@@ -20,9 +20,12 @@ TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv6j
 TARGET_BOOTLOADER_BOARD_NAME := gravitysmart
 
+#(from dmesg on device)
+BOARD_KERNEL_CMDLINE := mem=330M console=NULL hw=4 fbaddr=0xb5000
+#(from kernel kitchen from stock boot.img(from oden package))
+BOARD_KERNEL_BASE := 0x13600000 
+#end comment
 
-BOARD_KERNEL_CMDLINE := mem=330M console=NULL hw=4 fbaddr=0xb5000 #(from dmesg on device)
-BOARD_KERNEL_BASE := 0x13600000 #(from kernel kitchen from stock boot.img(from oden package))
 BOARD_KERNEL_PAGESIZE := 4096
 #BOARD_PAGE_SIZE := 0x00000800 #58588/14647
 
