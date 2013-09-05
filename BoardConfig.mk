@@ -43,6 +43,9 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0xDD00000 #231735296 #(226304*1024) #Blocksi
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x9E00000 #165675008 #(161792*1024) #Blocksize=161792(from device which In Hex=0x27800)
 BOARD_FLASH_BLOCK_SIZE := 4096 
 
+BOARD_BML_RECOVERY :=/dev/block/bml9
+BOARD_BML_BOOT :=/dev/block/bml8
+
 #/dev/stl14 /cache #Blocksize=21760 (from device)
 #/dev/stl13 /data #Blocksize=155648 (from device)
 #/dev/stl12 /system #Blocksize=226304 (from device)
