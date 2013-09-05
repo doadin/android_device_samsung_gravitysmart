@@ -25,15 +25,15 @@ PRODUCT_COPY_FILES += \
 
 # Support files
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
-    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
-    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml 
+    frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+    frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/base/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+    frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+    frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+    frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml 
 
 # Media configuration files
 PRODUCT_COPY_FILES += \
@@ -43,34 +43,34 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/config/init.qcom.rc:root/init.qcom.rc \
-	$(LOCAL_PATH)/config/init.goldfish.rc:root/init.goldfish.rc \
-	$(LOCAL_PATH)/config/init.goldfish.sh:root/init.goldfish.sh \
-	$(LOCAL_PATH)/config/init.qcom.bt.sh:root/init.qcom.bt.sh \
-	$(LOCAL_PATH)/config/init.qcom.coex.sh:root/init.qcom.coex.sh \
-	$(LOCAL_PATH)/config/init.qcom.fm.sh:root/init.qcom.fm.sh \
-	$(LOCAL_PATH)/config/init.qcom.post_boot.sh:root/init.qcom.post_boot.sh \
-	$(LOCAL_PATH)/config/init.qcom.sdio.sh:root/init.qcom.sdio.sh \
-	$(LOCAL_PATH)/config/init.qcom.wifi.sh:root/init.qcom.wifi.sh \
-	$(LOCAL_PATH)/config/fota.rc:root/fota.rc \
-    #$(LOCAL_PATH)/config/init.qcom.usb.rc:root/init.qcom.usb.rc \
-    #$(LOCAL_PATH)/config/ueventd.qcom.rc:root/ueventd.qcom.rc \
+    $(LOCAL_PATH)/config/init.goldfish.rc:root/init.goldfish.rc \
+    $(LOCAL_PATH)/config/init.goldfish.sh:root/init.goldfish.sh \
+    $(LOCAL_PATH)/config/init.qcom.bt.sh:root/init.qcom.bt.sh \
+    $(LOCAL_PATH)/config/init.qcom.coex.sh:root/init.qcom.coex.sh \
+    $(LOCAL_PATH)/config/init.qcom.fm.sh:root/init.qcom.fm.sh \
+    $(LOCAL_PATH)/config/init.qcom.post_boot.sh:root/init.qcom.post_boot.sh \
+    $(LOCAL_PATH)/config/init.qcom.sdio.sh:root/init.qcom.sdio.sh \
+    $(LOCAL_PATH)/config/init.qcom.wifi.sh:root/init.qcom.wifi.sh \
+    $(LOCAL_PATH)/config/fota.rc:root/fota.rc \
     $(LOCAL_PATH)/config/vold.fstab:system/etc/vold.fstab \
     $(LOCAL_PATH)/config/nvram_net.txt:system/vendor/firmware/nvram_net.txt 
+    #$(LOCAL_PATH)/config/init.qcom.usb.rc:root/init.qcom.usb.rc \
+    #$(LOCAL_PATH)/config/ueventd.qcom.rc:root/ueventd.qcom.rc \
 
 # Modules
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/dhd.ko:root/lib/modules/dhd.ko \
-	$(LOCAL_PATH)/prebuilt/fsr.ko:root/lib/modules/fsr.ko \
+    $(LOCAL_PATH)/prebuilt/fsr.ko:root/lib/modules/fsr.ko \
     $(LOCAL_PATH)/prebuilt/fsr_stl.ko:root/lib/modules/fsr_stl.ko \
     $(LOCAL_PATH)/prebuilt/rfs_fat.ko:root/lib/modules/rfs_fat.ko \
-	$(LOCAL_PATH)/prebuilt/rfs_glue.ko:root/lib/modules/rfs_glue.ko \
-	$(LOCAL_PATH)/prebuilt/sec_param.ko:root/lib/modules/sec_param.ko \
+    $(LOCAL_PATH)/prebuilt/rfs_glue.ko:root/lib/modules/rfs_glue.ko \
+    $(LOCAL_PATH)/prebuilt/sec_param.ko:root/lib/modules/sec_param.ko \
     $(LOCAL_PATH)/prebuilt/dhd.ko:system/lib/modules/dhd.ko \
-	$(LOCAL_PATH)/prebuilt/fsr.ko:system/lib/modules/fsr.ko \
+    $(LOCAL_PATH)/prebuilt/fsr.ko:system/lib/modules/fsr.ko \
     $(LOCAL_PATH)/prebuilt/fsr_stl.ko:system/lib/modules/fsr_stl.ko \
     $(LOCAL_PATH)/prebuilt/rfs_fat.ko:system/lib/modules/rfs_fat.ko \
-	$(LOCAL_PATH)/prebuilt/rfs_glue.ko:system/lib/modules/rfs_glue.ko \
-	$(LOCAL_PATH)/prebuilt/sec_param.ko:system/lib/modules/sec_param.ko \
+    $(LOCAL_PATH)/prebuilt/rfs_glue.ko:system/lib/modules/rfs_glue.ko \
+    $(LOCAL_PATH)/prebuilt/sec_param.ko:system/lib/modules/sec_param.ko 
 	
 # Needed to reset bootmode when leaving recovery
 #PRODUCT_COPY_FILES += \
