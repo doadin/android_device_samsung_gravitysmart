@@ -2,7 +2,7 @@
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
-#$(call inherit-product, $(LOCAL_PATH)/full_gravitysmart.mk)
+$(call inherit-product, $(LOCAL_PATH)/full_gravitysmart.mk)
 
 PRODUCT_RELEASE_NAME := gravitysmart
 
@@ -10,8 +10,8 @@ PRODUCT_RELEASE_NAME := gravitysmart
 #CM_EXTRAVERSION := alpha1
 
 # Setup device configuration
-PRODUCT_NAME := SGH-T589
-PRODUCT_DEVICE := SGH-T589
+PRODUCT_NAME := cm_gravitysmart
+PRODUCT_DEVICE := gravitysmart
 PRODUCT_BRAND := Samsung
 PRODUCT_MANUFACTURER := Samsung
 PRODUCT_MODEL := SGH-T589
