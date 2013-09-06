@@ -20,7 +20,7 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product, build/target/product/full.mk)
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-PRODUCT_NAME := generic_gravitysmart
+PRODUCT_NAME := full_gravitysmart
 PRODUCT_DEVICE := gravitysmart
 PRODUCT_BRAND := Samsung
 PRODUCT_MANUFACTURER := Samsung
