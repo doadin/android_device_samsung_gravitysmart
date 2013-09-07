@@ -1,3 +1,0 @@
-Reboot Options
-1. Recovery ( T + Power )
-2. Download Mode ( Both Vol. Buttons + Power )

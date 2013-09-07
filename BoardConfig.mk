@@ -1,44 +1,171 @@
-USE_CAMERA_STUB := true
+# Copyright (C) 2012 The CyanogenMod Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#
+# This file sets variables that control the way modules are built
+# thorughout the system. It should not be used to conditionally
+# disable makefiles (the proper mechanism to control what gets
+# included in a build is to use PRODUCT_PACKAGES in a product
+# definition file).
+#
+
+# WARNING: This line must come *before* including the proprietary
+# variant, so that it gets overwritten by the parent (which goes
+# against the traditional rules of inheritance).
+#USE_CAMERA_STUB := true
+
 
 # inherit from the proprietary version
 -include vendor/samsung/gravitysmart/BoardConfigVendor.mk
-BOARD_CUSTOM_RECOVERY_KEYMAPPING:= ../../device/samsung/gravitysmart/recovery/recovery_ui.c
+
+
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/gravitysmart/include
+
 
 TARGET_NO_BOOTLOADER := true
+
 TARGET_BOARD_PLATFORM := msm7k
-TARGET_CPU_ABI := armeabi-v6j
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
+
+TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_ARCH_VARIANT := armv6j
+
+#TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+#TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+
+#ARCH_ARM_HAVE_TLS_REGISTER := true
+#TARGET_USE_SCORPION_BIONIC_OPTIMIZATION := true
+
+#TARGET_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_ROTATOR_KERNEL_FORMATS
+#TARGET_GLOBAL_CFLAGS += -DBINDER_COMPAT -DSAMSUNG_CAMERA_QCOM
+#TARGET_GLOBAL_CFLAGS += -DWITH_QCOM_LPA
+
 TARGET_BOOTLOADER_BOARD_NAME := gravitysmart
+TARGET_OTA_ASSERT_DEVICE := gravitysmart,SGH-T589,gravitysmart
 
-BOARD_KERNEL_CMDLINE := mem=330M console=NULL hw=4 fbaddr=0xb5000
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
+TARGET_NO_KERNEL := false
+TARGET_PROVIDES_INIT_TARGET_RC := true
+TARGET_NO_INITLOGO := true
+#TARGET_NO_RECOVERY := true
+
+
+# Wifi related defines
+BOARD_WPA_SUPPLICANT_DRIVER := WEXT
+WPA_SUPPLICANT_VERSION      := VER_0_6_X
+BOARD_WLAN_DEVICE           := bcm4329
+WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/bcm4329.ko"
+WIFI_DRIVER_FW_STA_PATH     := "/vendor/firmware/fw_bcm4329.bin"
+WIFI_DRIVER_FW_AP_PATH      := "/vendor/firmware/fw_bcm4329_apsta.bin"
+WIFI_DRIVER_MODULE_ARG      := "firmware_path=/vendor/firmware/fw_bcm4329.bin nvram_path=/proc/calibration"
+WIFI_DRIVER_MODULE_NAME     := "bcm4329"
+
+
 BOARD_KERNEL_BASE := 0x13600000
-BOARD_PAGE_SIZE := 0x00000800
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_KERNEL_CMDLINE := mem=330M console=NULL hw=4 fbaddr=0xb5000
 
-# fix this up by examining /proc/mtd on a running device
-BOARD_BOOTIMAGE_PARTITION_SIZE := 0xA00000
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0xA00000
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0xDD00000
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x9E00000
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
+TARGET_NEEDS_BLUETOOTH_INIT_DELAY := true
+
+#BOARD_MOBILEDATA_INTERFACE_NAME = "pdp0"
+
+#BOARD_USES_LIBSECRIL_STUB := true
+
+BOARD_USES_GENERIC_AUDIO := true
+#BOARD_USES_QCOM_AUDIO_RESETALL := true
+#TARGET_USES_QCOM_LPA := true
+#BOARD_HAVE_SAMSUNG_AUDIO := true
+
+# FM Radio
+#BOARD_HAVE_FM_RADIO := true
+#BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
+#BOARD_FM_DEVICE := si4709
+
+BOARD_EGL_CFG := device/samsung/gravitysmart/egl.cfg
+
+USE_OPENGL_RENDERER := true
+
+BOARD_USE_SKIA_LCDTEXT := true
+
+BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
+
+#TARGET_USES_C2D_COMPOSITION := false
+#TARGET_USES_OVERLAY := false
+#TARGET_USES_SF_BYPASS := false
+#TARGET_HAVE_BYPASS := false
+#TARGET_GRALLOC_USES_ASHMEM := false
+#TARGET_USES_GENLOCK := true
+#TARGET_FORCE_CPU_UPLOAD := true
+
+BOARD_USES_QCOM_HARDWARE := true
+BOARD_USES_QCOM_GPS := true
+BOARD_USES_QCOM_LIBS := true
+BOARD_USES_QCOM_LIBRPC := true
+BOARD_USES_QCOM_PMEM := true
+
+
+# Camera
+USE_CAMER_STUB := false
+ifeq ($(USE_CAMERA_STUB),false)
+BOARD_CAMERA_LIBRARIES := libcamera
+endif
+
+BOARD_USE_LEGACY_TOUCHSCREEN := true
+
+BOARD_VENDOR_QCOM_AMSS_VERSION := 6225
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := gravitysmart
+BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 3200
+
+TARGET_USERIMAGES_USE_EXT4 := true
+
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+BOARD_VOLD_MAX_PARTITIONS := 28
+
+BOARD_MTP_DEVICE := "/dev/usb_mtp_gadget"
+
+
+
+# Begin recovery stuff
+#
+# Partition sizes must match your phone, or all hell will break loose!
+# For the Galaxy W, these are calculated from /proc/partitions
+BOARD_BOOTIMAGE_PARTITION_SIZE := 10485760
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 10485760
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 231735296
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 165675008
+BOARD_CACHEIMAGE_PARTITION_SIZE := 22282240
 BOARD_FLASH_BLOCK_SIZE := 4096
 
-TARGET_PREBUILT_KERNEL := device/samsung/gravitysmart/zImage
+BOARD_USES_MMCUTILS := true
+BOARD_HAS_NO_MISC_PARTITION := true
+BOARD_HAS_SDCARD_INTERNAL := true
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/gravitysmart/ancora_tmo/recovery/recovery_ui.c
+BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/gravitysmart/recovery/graphics.c
+TARGET_RECOVERY_INITRC := device/samsung/gravitysmart/config/init.recovery.rc
+#BOARD_UMS_LUNFILE := /sys/devices/platform/usb_mass_storage/lun0/file
+TARGET_RECOVERY_UI_LIB := librecovery_ui_gravitysmart
+# End recovery stuff
 
-# Below is a sample of how you can tweak the mount points using the board config.
-# This is for the Samsung Galaxy S.
-# Feel free to tweak or remove this code.
-# If you want to add/tweak a mount point, the BOARD_X_FILESYSTEM_OPTIONS are optional.
-#BOARD_DATA_DEVICE := /dev/block/mmcblk0p2
-#BOARD_DATA_FILESYSTEM := auto
-#BOARD_DATA_FILESYSTEM_OPTIONS := llw,check=no,nosuid,nodev
-#BOARD_HAS_DATADATA := true
-#BOARD_DATADATA_DEVICE := /dev/block/stl10
-#BOARD_DATADATA_FILESYSTEM := auto
-#BOARD_DATADATA_FILESYSTEM_OPTIONS := llw,check=no,nosuid,nodev
-#BOARD_SYSTEM_DEVICE := /dev/block/stl9
-#BOARD_SYSTEM_FILESYSTEM := auto
-#BOARD_SYSTEM_FILESYSTEM_OPTIONS := llw,check=no
-#BOARD_CACHE_DEVICE := /dev/block/stl11
-#BOARD_CACHE_FILESYSTEM := auto
-#BOARD_CACHE_FILESYSTEM_OPTIONS := llw,check=no,nosuid,nodev
-#BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
+#Kernel 
+
+TARGET_PREBUILT_KERNEL := device/samsung/gravitysmart/prebuilt/zImage
+#TARGET_KERNEL_CONFIG := ancora_tmo_rev00_defconfig
+
+
+#TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
