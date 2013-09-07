@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_gravitysmart.mk
+    $(LOCAL_DIR)/device_gravitysmart.mk
