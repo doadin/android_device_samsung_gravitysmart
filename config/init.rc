@@ -1,38 +1,6 @@
-
-on emmc
-
-    mkdir /system
-    mkdir /data 0771 system system
-    mkdir /persist 0771 system system
-    devwait /dev/block/mmcblk0p12
-	#mount ext3 /dev/block/mmcblk0p12 /system ro
-	mount ext3 /dev/block/mmcblk0p12 /system ro relatime
-    devwait /dev/block/mmcblk0p13
-    exec /system/bin/e2fsck -p /dev/block/mmcblk0p13
-    mount ext3 /dev/block/mmcblk0p13 /data nosuid nodev relatime
-    #devwait /dev/block/mmcblk0p14
-    #mount ext3 /dev/block/mmcblk0p14 /persist nosuid nodev
-
-on nand
-
-    mkdir /system
-    mkdir /data 0771 system system
-    mkdir /persist 0771 system system
-    # Mount /system rw first to give the filesystem a chance to save a checkpoint
-    mount yaffs2 mtd@system /system relatime
-    # chown root root /system/bin/brcm_dutMode
-    # chmod 6777 /system/bin/brcm_dutMode
-    #mount yaffs2 mtd@system /system ro remount
-    mount yaffs2 mtd@userdata /data nosuid nodev relatime
-    mount yaffs2 mtd@persist /persist nosuid nodev
-
-	write /sys/block/stl12/queue/read_ahead_kb 4
-	write /sys/block/stl13/queue/read_ahead_kb 4
-	write /sys/block/stl14/queue/read_ahead_kb 4
-	write /sys/devices/virtual/block/stl12/queue/read_ahead_kb 4
-	write /sys/devices/virtual/block/stl13/queue/read_ahead_kb 4
-	write /sys/devices/virtual/block/stl14/queue/read_ahead_kb 4
-
+on early-init
+    start ueventd
+	
 on init
 
 sysclktz 0
@@ -48,7 +16,7 @@ loglevel 3
     export ANDROID_DATA /data
     export EXTERNAL_STORAGE /mnt/sdcard
     export ASEC_MOUNTPOINT /mnt/asec
-    export BOOTCLASSPATH /system/framework/core.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/android.policy.jar:/system/framework/services.jar
+    export BOOTCLASSPATH /system/framework/core.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/core-junit.jar
 
 # insmod fsr/rfs modules
     insmod /lib/modules/fsr.ko

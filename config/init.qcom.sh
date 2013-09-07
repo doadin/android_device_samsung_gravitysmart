@@ -26,6 +26,42 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+#
+# start ril-daemon only for targets on which radio is present
+#
+baseband=`getprop ro.baseband`
+case "$baseband" in
+    "msm" | "csfb" | "svlte2a" | "unknown")
+    start ril-daemon
+esac
+
+#
+# Allow unique persistent serial numbers for devices connected via usb
+# User needs to set unique usb serial number to persist.usb.serialno
+#
+serialno=`getprop persist.usb.serialno`
+case "$serialno" in
+    "") ;; #Do nothing here
+    * )
+    mount -t debugfs none /sys/kernel/debug
+    echo "$serialno" > /sys/kernel/debug/android/serial_number
+esac
+
+#
+# Allow persistent usb charging disabling
+# User needs to set usb charging disabled in persist.usb.chgdisabled
+#
+target=`getprop ro.product.device`
+usbchgdisabled=`getprop persist.usb.chgdisabled`
+case "$usbchgdisabled" in
+    "") ;; #Do nothing here
+    * )
+    case $target in
+        "msm8660_surf" | "msm8660_csfb")
+        echo "$usbchgdisabled" > /sys/module/pmic8058_charger/parameters/disabled
+    esac
+esac
+
 target=`getprop ro.product.device`
 case "$target" in
     "msm7630_surf")

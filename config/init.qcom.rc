@@ -128,6 +128,9 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     user root
     disabled
     oneshot
+	
+on property:dev.bootdone=1
+    start qcom-post-boot
 
 service qcom-wifi /system/bin/sh /system/etc/init.qcom.wifi.sh
     user root
