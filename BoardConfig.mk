@@ -23,6 +23,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x9E00000
 BOARD_FLASH_BLOCK_SIZE := 4096
 
 TARGET_PREBUILT_KERNEL := device/samsung/gravitysmart/zImage
+# kernel config gt2_rev01_defconfig
 
 # Below is a sample of how you can tweak the mount points using the board config.
 # This is for the Samsung Galaxy S.
