@@ -22,6 +22,40 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0xDD00000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x9E00000
 BOARD_FLASH_BLOCK_SIZE := 4096
 
+# cat /proc/partitions
+# major minor  #blocks  name
+
+# 137        0     513024 bml0/c
+# 137        1       1536 bml1
+# 137        2        512 bml2
+# 137        3        768 bml3
+# 137        4      25600 bml4
+# 137        5       9216 bml5
+# 137        6       5120 bml6
+# 137        7       2048 bml7
+# 137        8      10240 bml8
+# 137        9      10240 bml9
+# 137       10        768 bml10
+# 137       11      25600 bml11
+# 137       12     233984 bml12
+# 137       13     161792 bml13
+# 137       14      25600 bml14
+# 138       12     226304 stl12
+# 138       13     155648 stl13
+# 138       14      21760 stl14
+
+# FSTAB
+# mount point	fstype		device			[device2]
+# /boot           emmc            /dev/bml8
+# /recovery       emmc            /dev/bml9
+# /system         ext4            /dev/stl12
+# /cache          ext4            /dev/stl14
+# /data           ext4            /dev/stl13
+# /sdcard         vfat            /dev/block/vold/179:1
+
+# VOLD FSTAB
+# dev_mount sdcard /mnt/sdcard auto /devices/platform/msm_sdcc.1/mmc_host
+
 TARGET_PREBUILT_KERNEL := device/samsung/gravitysmart/zImage
 # TARGET_KERNEL_SOURCE := kernel/samsung/gravitysmart
 # TARGET_KERNEL_CONFIG := gt2_rev01_defconfig
